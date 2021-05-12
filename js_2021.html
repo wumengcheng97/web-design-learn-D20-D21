@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+
+<body>
+    <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+    <button id="fade-btn">淡出</button>
+    <br>
+
+    <input id="name" type="text">
+    <button id="submit-btn">Submit</button>
+
+    <script>
+        /*setInterval */
+
+        var x = 1;
+        document.getElementById("fade-btn").onclick = function(){
+            if(document.getElementById("fade-btn").innerHTML == "淡出"){
+                document.getElementById("fade-btn").disabled = true;
+                var fadeOut = setInterval(function(){ 
+                    x = x - 0.05;
+                    console.log(x);
+                    document.getElementById("fade-obj").style.opacity = x;
+                    if(x <= 0){
+                        document.getElementById("fade-btn").disabled = false;
+                        document.getElementById("fade-btn").innerHTML = "淡入";
+                        clearInterval(fadeOut);
+                        
+                    }
+                }, 50);                
+            }else if(document.getElementById("fade-btn").innerHTML == "淡入"){
+                x = 0;
+                document.getElementById("fade-btn").disabled = true;
+                var fadeIn = setInterval(function(){ 
+                    x = x + 0.05;
+                    console.log(x);
+                    document.getElementById("fade-obj").style.opacity = x;
+                    if(x >= 1){
+                        document.getElementById("fade-btn").disabled = false;
+                        document.getElementById("fade-btn").innerHTML = "淡出";
+                        clearInterval(fadeIn);
+                        
+                    }
+                }, 50);  
+            }
+            
+        }
+
+        /*setTimeout*/
+       /* var x = 1;
+        document.getElementById("fade-btn").onclick = function(){
+            if(document.getElementById("fade-btn").innerHTML == "淡出"){
+                document.getElementById("fade-btn").disabled = true;
+                fadeOut();
+            }else if(document.getElementById("fade-btn").innerHTML == "淡入"){
+                x = 0;
+                document.getElementById("fade-btn").disabled = true;
+                fadeIn();
+            }
+            
+        }
+
+        function fadeOut(){
+            x = x - 0.05;
+            console.log(x);
+            document.getElementById("fade-obj").style.opacity = x;
+            if(x <= 0){
+                document.getElementById("fade-btn").disabled = false;
+                document.getElementById("fade-btn").innerHTML = "淡入";
+                return;
+            }
+            setTimeout("fadeOut()", 50);           
+        }
+
+        function fadeIn(){
+            x = x + 0.05;
+            console.log(x);
+            document.getElementById("fade-obj").style.opacity = x;
+            if(x >= 1){
+                document.getElementById("fade-btn").disabled = false;
+                document.getElementById("fade-btn").innerHTML = "淡出";
+                return;
+            }
+            setTimeout("fadeIn()", 50);
+        }*/
+
+
+        document.getElementById("submit-btn").onclick = function(){
+            console.log(document.getElementById("name").value);
+        }
+
+        document.getElementById("name").onfocus = function(){
+ 
+            document.onkeydown = function(){
+                if(event.keyCode == 13){
+                    //回车键
+                    console.log(document.getElementById("name").value);
+                }else if(event.keyCode == 27){
+                    //ESC键
+                    document.getElementById("name").value = "";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
